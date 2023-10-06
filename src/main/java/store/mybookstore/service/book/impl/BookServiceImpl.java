@@ -1,18 +1,18 @@
-package store.mybookstore.service.impl;
+package store.mybookstore.service.book.impl;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import store.mybookstore.dto.BookDto;
-import store.mybookstore.dto.CreateBookRequestDto;
-import store.mybookstore.dto.records.BookSearchParameters;
+import store.mybookstore.dto.book.BookDto;
+import store.mybookstore.dto.book.CreateBookRequestDto;
+import store.mybookstore.dto.book.records.BookSearchParameters;
 import store.mybookstore.exception.EntityNotFoundException;
 import store.mybookstore.mapper.BookMapper;
 import store.mybookstore.model.Book;
 import store.mybookstore.repository.BookRepository;
-import store.mybookstore.repository.impl.BookSpecificationBuilder;
-import store.mybookstore.service.BookService;
+import store.mybookstore.repository.bookspecifications.BookSpecificationBuilder;
+import store.mybookstore.service.book.BookService;
 
 @Service
 @RequiredArgsConstructor
@@ -51,12 +51,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto updateById(Long id, CreateBookRequestDto requestDto) {
-        if (bookRepository.findById(id).isPresent()) {
-            Book book = bookMapper.toModel(requestDto);
-            book.setId(id);
-            return bookMapper.toDto(bookRepository.save(book));
-        }
-        throw new EntityNotFoundException("Can't update book with input id:" + id);
+        Book bookById = bookRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Can't update book by id:" + id));
+        bookById.setTitle(requestDto.getTitle());
+        bookById.setAuthor(requestDto.getAuthor());
+        bookById.setPrice(requestDto.getPrice());
+        bookById.setIsbn(requestDto.getIsbn());
+        bookById.setDescription(requestDto.getDescription());
+        bookById.setCoverImage(requestDto.getCoverImage());
+        return bookMapper.toDto(bookRepository.save(bookById));
     }
 
     @Override

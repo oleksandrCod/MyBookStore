@@ -1,9 +1,9 @@
-package store.mybookstore.service;
+package store.mybookstore.service.book;
 
 import java.util.List;
-import store.mybookstore.dto.BookDto;
-import store.mybookstore.dto.CreateBookRequestDto;
-import store.mybookstore.dto.records.BookSearchParameters;
+import store.mybookstore.dto.book.BookDto;
+import store.mybookstore.dto.book.CreateBookRequestDto;
+import store.mybookstore.dto.book.records.BookSearchParameters;
 
 public interface BookService {
     BookDto createBook(CreateBookRequestDto requestDto);
