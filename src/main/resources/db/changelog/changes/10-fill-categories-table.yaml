@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-categories-table
+      author: karpo
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column: { name: "name", value: "novel" }
+              - column: { name: "description", value: "great long story" }
+        - insert:
+            tableName: categories
+            columns:
+              - column: { name: "name", value: "erotic" }
+              - column: { name: "description", value: "java development" }
+        - insert:
+            tableName: categories
+            columns:
+              - column: { name: "name", value: "fantasy" }
+              - column: { name: "description", value: "you have a job as java dev" }
+
+
