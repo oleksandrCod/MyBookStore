@@ -30,8 +30,8 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
-                  name: price
-                  type: bigint
+                  name: prices
+                  type: decimal
                   constraints:
                     nullable: false
               - column:
