@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,8 +31,8 @@ public class BookController {
 
     @GetMapping
     @Operation(summary = "Get all books.", description = "Return list of all present books")
-    public List<BookDto> getAll() {
-        return bookService.getAll();
+    public List<BookDto> getAll(Pageable pageable) {
+        return bookService.getAll(pageable);
     }
 
     @GetMapping("/{id}")
