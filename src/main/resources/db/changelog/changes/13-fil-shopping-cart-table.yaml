@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-shopping-cart
+      author: karpo
+      changes:
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: "user_id"
+                  value: "1"
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: "user_id"
+                  value: "2"
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: "user_id"
+                  value: "3"

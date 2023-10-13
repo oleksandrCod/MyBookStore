@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-cart-items-table
+      author: karpo
+      changes:
+        - insert:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: "shopping_carts_id"
+                  value: 1
+              - column:
+                  name: "books_id"
+                  value: 1
+              - column:
+                  name: "quantity"
+                  value: 1
+        - insert:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: "shopping_carts_id"
+                  value: 2
+              - column:
+                  name: "books_id"
+                  value: 2
+              - column:
+                  name: "quantity"
+                  value: 2
+        - insert:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: "shopping_carts_id"
+                  value: 3
+              - column:
+                  name: "books_id"
+                  value: 3
+              - column:
+                  name: "quantity"
+                  value: 3
