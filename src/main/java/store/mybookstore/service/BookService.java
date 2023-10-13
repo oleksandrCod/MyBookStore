@@ -1,6 +1,7 @@
 package store.mybookstore.service;
 
 import java.util.List;
+import org.springframework.data.domain.Pageable;
 import store.mybookstore.dto.BookDto;
 import store.mybookstore.dto.CreateBookRequestDto;
 import store.mybookstore.dto.records.BookSearchParameters;
@@ -8,7 +9,7 @@ import store.mybookstore.dto.records.BookSearchParameters;
 public interface BookService {
     BookDto createBook(CreateBookRequestDto requestDto);
 
-    List<BookDto> getAll();
+    List<BookDto> getAll(Pageable pageable);
 
     BookDto getBookById(Long id);
 
