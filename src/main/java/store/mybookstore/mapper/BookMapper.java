@@ -2,8 +2,8 @@ package store.mybookstore.mapper;
 
 import org.mapstruct.Mapper;
 import store.mybookstore.config.MapperConfig;
-import store.mybookstore.dto.BookDto;
-import store.mybookstore.dto.CreateBookRequestDto;
+import store.mybookstore.dto.book.BookDto;
+import store.mybookstore.dto.book.CreateBookRequestDto;
 import store.mybookstore.model.Book;
 
 @Mapper(config = MapperConfig.class)

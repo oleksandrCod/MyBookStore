@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import store.mybookstore.dto.BookDto;
-import store.mybookstore.dto.CreateBookRequestDto;
-import store.mybookstore.dto.records.BookSearchParameters;
-import store.mybookstore.service.BookService;
+import store.mybookstore.dto.book.BookDto;
+import store.mybookstore.dto.book.CreateBookRequestDto;
+import store.mybookstore.dto.book.records.BookSearchParameters;
+import store.mybookstore.service.book.BookService;
 
 @Tag(name = "Books management", description = "Endpoints for managing books")
 @RequiredArgsConstructor
@@ -40,6 +41,7 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
+    @PreAuthorize("hasRole(ROLE_ADMIN)")
     @PostMapping
     @Operation(summary = "Create new book", description = "Create new book")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
@@ -47,12 +49,14 @@ public class BookController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole(ROLE_ADMIN)")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete book by ID", description = "Soft delete for book with input ID")
     public void deleteBookById(@PathVariable Long id) {
         bookService.deleteById(id);
     }
 
+    @PreAuthorize("hasRole(ROLE_ADMIN)")
     @PutMapping("/{id}")
     @Operation(summary = "Update book", description = "Update present book by ID")
     public BookDto updateBookById(@PathVariable Long id,

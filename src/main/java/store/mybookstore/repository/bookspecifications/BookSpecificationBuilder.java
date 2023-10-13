@@ -1,11 +1,12 @@
-package store.mybookstore.repository.impl;
+package store.mybookstore.repository.bookspecifications;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import store.mybookstore.dto.records.BookSearchParameters;
+import store.mybookstore.dto.book.records.BookSearchParameters;
 import store.mybookstore.model.Book;
-import store.mybookstore.repository.SpecificationBuilder;
+import store.mybookstore.repository.specifications.SpecificationBuilder;
+import store.mybookstore.repository.specifications.SpecificationProviderManager;
 
 @Component
 @RequiredArgsConstructor

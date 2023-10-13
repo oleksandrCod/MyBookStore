@@ -1,11 +1,12 @@
-package store.mybookstore.repository.impl;
+package store.mybookstore.repository.bookspecifications;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import store.mybookstore.exception.NoSuchSpecificationProvider;
 import store.mybookstore.model.Book;
-import store.mybookstore.repository.SpecificationProvider;
+import store.mybookstore.repository.specifications.SpecificationProvider;
+import store.mybookstore.repository.specifications.SpecificationProviderManager;
 
 @Component
 @RequiredArgsConstructor
