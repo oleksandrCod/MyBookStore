@@ -57,11 +57,7 @@ public class OrderServiceImpl implements OrderService {
                                 new BigDecimal(orderItem.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         order.setTotal(totalPrice);
-        Order save = orderRepository.save(order);
-        OrderResponseDto dto = orderMapper.toDto(save);
-        dto.setOrderItems(orderItems.stream()
-                .map(orderItemMapper::toDto).collect(Collectors.toSet()));
-        return dto;
+        return orderMapper.toDto(orderRepository.save(order));
     }
 
     @Override
