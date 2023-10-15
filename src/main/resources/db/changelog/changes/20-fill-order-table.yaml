@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-order-table
+      author: karpo
+      changes:
+        - insert:
+            tableName: orders
+            columns:
+              - column: { name: "user_id", value: "1" }
+              - column: { name: "status", value: "COMPLETED" }
+              - column: { name: "order_date", value: "2023-10-13 10:00:00" }
+              - column: { name: "shipping_address", value: "Shevchenka 7" }
+              - column: { name: "total", value: "90" }
+        - insert:
+            tableName: orders
+            columns:
+              - column: { name: "user_id", value: "2" }
+              - column: { name: "status", value: "PENDING" }
+              - column: { name: "order_date", value: "2023-10-13 10:30:00" }
+              - column: { name: "shipping_address", value: "Shevchenka 17" }
+              - column: { name: "total", value: "10" }
+        - insert:
+            tableName: orders
+            columns:
+              - column: { name: "user_id", value: "3" }
+              - column: { name: "status", value: "DELIVERED" }
+              - column: { name: "order_date", value: "2023-09-13 10:00:00" }
+              - column: { name: "shipping_address", value: "Val 7" }
+              - column: { name: "total", value: "200.22" }
