@@ -58,38 +58,16 @@ class CategoryServiceImplTest {
 
     @BeforeAll
     static void beforeAll() {
-        category = new Category();
-        category.setId(id);
-        category.setName("Category A");
-        category.setDescription("Description A");
+        category = getDefaultCategory();
 
-        requestDto = new CategoryCreateRequestDto();
-        requestDto.setName(category.getName());
-        requestDto.setDescription(category.getDescription());
+        requestDto = getDefaultCategoryCreateRequestDto(category);
 
-        categoryDto = new CategoryDto();
-        categoryDto.setId(id);
-        categoryDto.setName(category.getName());
-        categoryDto.setDescription(category.getDescription());
+        categoryDto = getDefaultCategoryDto(category);
 
-        book = new Book();
-        book.setId(id);
-        book.setAuthor("Author A");
-        book.setTitle("Title A");
-        book.setDescription("Description A");
-        book.setPrice(BigDecimal.valueOf(10));
-        book.setIsbn("10001000");
-        book.setCoverImage("https://example.com/default-cover-image.jpg");
-        book.setCategories(Set.of(category));
+        book = getDefaultBook(category);
 
-        withoutCategoryIds = new BookDtoWithoutCategoryIds();
-        withoutCategoryIds.setId(id);
-        withoutCategoryIds.setAuthor(book.getAuthor());
-        withoutCategoryIds.setTitle(book.getTitle());
-        withoutCategoryIds.setDescription(book.getDescription());
-        withoutCategoryIds.setPrice(book.getPrice());
-        withoutCategoryIds.setIsbn(book.getIsbn());
-        withoutCategoryIds.setCoverImage(book.getCoverImage());
+        withoutCategoryIds = getDefaultBookDtoWithoutCategoryIds(book);
+
     }
 
     @Test
@@ -180,5 +158,49 @@ class CategoryServiceImplTest {
         List<BookDtoWithoutCategoryIds> actual = categoryService.getBooksByCategoryId(pageable, id);
 
         assertEquals(actual.get(0), withoutCategoryIds);
+    }
+
+    private static BookDtoWithoutCategoryIds getDefaultBookDtoWithoutCategoryIds(Book book) {
+        return new BookDtoWithoutCategoryIds()
+                .setId(id)
+                .setAuthor(book.getAuthor())
+                .setTitle(book.getTitle())
+                .setDescription(book.getDescription())
+                .setPrice(book.getPrice())
+                .setIsbn(book.getIsbn())
+                .setCoverImage(book.getCoverImage());
+    }
+
+    private static Book getDefaultBook(Category category) {
+        return new Book()
+                .setId(id)
+                .setAuthor("Author A")
+                .setTitle("Title A")
+                .setDescription("Description A")
+                .setPrice(BigDecimal.valueOf(10))
+                .setIsbn("10001000")
+                .setCoverImage("https://example.com/default-cover-image.jpg")
+                .setCategories(Set.of(category));
+    }
+
+    private static CategoryDto getDefaultCategoryDto(Category category) {
+        return new CategoryDto()
+                .setId(id)
+                .setName(category.getName())
+                .setDescription(category.getDescription());
+
+    }
+
+    private static CategoryCreateRequestDto getDefaultCategoryCreateRequestDto(Category category) {
+        return new CategoryCreateRequestDto()
+                .setName(category.getName())
+                .setDescription(category.getDescription());
+    }
+
+    private static Category getDefaultCategory() {
+        return new Category()
+                .setId(id)
+                .setName("Category A")
+                .setDescription("Description A");
     }
 }

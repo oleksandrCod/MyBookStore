@@ -51,56 +51,23 @@ class ShoppingCartServiceImplTest {
 
     @BeforeAll
     static void beforeAll() {
-        user = new User();
-        user.setRoles(Set.of());
-        user.setId(id);
-        user.setFirstName("Bob");
-        user.setLastName("Bober");
-        user.setEmail("bob@example.com");
-        user.setPassword("12345678");
-        user.setShippingAddress("Vilna 7");
+        user = getDefaultUser();
 
-        category = new Category();
-        category.setId(id);
-        category.setName("test_category");
+        category = getDefaultCategory();
 
-        book = new Book();
-        book.setId(id);
-        book.setAuthor("Author A");
-        book.setTitle("Title A");
-        book.setDescription("Description A");
-        book.setPrice(BigDecimal.valueOf(10));
-        book.setIsbn("10001000");
-        book.setCoverImage("https://example.com/default-cover-image.jpg");
-        book.setCategories(Set.of(category));
+        book = getDefaultBook(category);
 
-        cartItem = new CartItem();
-        cartItem.setQuantity(1);
-        cartItem.setId(id);
-        cartItem.setBook(book);
+        cartItem = getDefaultCartItem(book);
 
-        shoppingCart = new ShoppingCart();
-        shoppingCart.setId(id);
-        shoppingCart.setUser(user);
+        shoppingCart = getDefaultShoppingCart(user, cartItem);
 
         cartItem.setShoppingCart(shoppingCart);
-        shoppingCart.setCartItems(List.of(cartItem));
 
-        cartItemRequestDto = new CartItemRequestDto();
-        cartItemRequestDto.setQuantity(1);
-        cartItemRequestDto.setBookId(id);
+        cartItemRequestDto = getDefaultCartItemRequestDto();
 
-        cartItemResponseDto = new CartItemResponseDto();
-        cartItemResponseDto.setId(id);
-        cartItemResponseDto.setQuantity(1);
-        cartItemResponseDto.setBookId(id);
-        cartItemResponseDto.setBookTitle(book.getTitle());
+        cartItemResponseDto = getDefaultCartItemResponseDto(book);
 
-        shoppingCartResponseDto = new ShoppingCartResponseDto();
-        shoppingCartResponseDto.setUserId(id);
-        shoppingCartResponseDto.setId(id);
-        shoppingCartResponseDto.setCartItems(Set.of(cartItemResponseDto));
-
+        shoppingCartResponseDto = getDefaultShoppingCartResponseDto(cartItemResponseDto);
     }
 
     @Test
@@ -139,5 +106,70 @@ class ShoppingCartServiceImplTest {
 
         assertNotNull(actual);
         EqualsBuilder.reflectionEquals(cartItemRequestDto, actual);
+    }
+
+    private static ShoppingCartResponseDto getDefaultShoppingCartResponseDto(
+            CartItemResponseDto cartItemResponseDto) {
+        return new ShoppingCartResponseDto()
+                .setUserId(id)
+                .setId(id)
+                .setCartItems(Set.of(cartItemResponseDto));
+    }
+
+    private static CartItemResponseDto getDefaultCartItemResponseDto(Book book) {
+        return new CartItemResponseDto()
+                .setId(id)
+                .setQuantity(1)
+                .setBookId(id)
+                .setBookTitle(book.getTitle());
+    }
+
+    private static CartItemRequestDto getDefaultCartItemRequestDto() {
+        return new CartItemRequestDto()
+                .setQuantity(1)
+                .setBookId(id);
+    }
+
+    private static ShoppingCart getDefaultShoppingCart(User user, CartItem cartItem) {
+        return new ShoppingCart()
+                .setId(id)
+                .setUser(user)
+                .setCartItems(List.of(cartItem));
+    }
+
+    private static CartItem getDefaultCartItem(Book book) {
+        return new CartItem()
+                .setQuantity(1)
+                .setId(id)
+                .setBook(book);
+    }
+
+    private static Book getDefaultBook(Category category) {
+        return new Book()
+                .setId(id)
+                .setAuthor("Author A")
+                .setTitle("Title A")
+                .setDescription("Description A")
+                .setPrice(BigDecimal.valueOf(10))
+                .setIsbn("10001000")
+                .setCoverImage("https://example.com/default-cover-image.jpg")
+                .setCategories(Set.of(category));
+    }
+
+    private static Category getDefaultCategory() {
+        return new Category()
+                .setId(id)
+                .setName("test_category");
+    }
+
+    private static User getDefaultUser() {
+        return new User()
+                .setRoles(Set.of())
+                .setId(id)
+                .setFirstName("Bob")
+                .setLastName("Bober")
+                .setEmail("bob@example.com")
+                .setPassword("12345678")
+                .setShippingAddress("Vilna 7");
     }
 }

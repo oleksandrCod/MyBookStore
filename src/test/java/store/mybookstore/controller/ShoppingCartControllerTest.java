@@ -45,18 +45,11 @@ class ShoppingCartControllerTest {
                 .apply(SecurityMockMvcConfigurers.springSecurity())
                 .build();
 
-        cartItemRequestDto = new CartItemRequestDto();
-        cartItemRequestDto.setQuantity(1);
-        cartItemRequestDto.setBookId(id);
+        cartItemRequestDto = getDefaultCartItemRequestDto();
 
-        cartItemResponseDto = new CartItemResponseDto();
-        cartItemResponseDto.setId(id);
-        cartItemResponseDto.setQuantity(1);
-        cartItemResponseDto.setBookId(id);
-        cartItemResponseDto.setBookTitle("Title 1");
+        cartItemResponseDto = getDefaultCartItemResponseDto();
 
-        updateQuantityRequestDto = new CartItemUpdateQuantityRequestDto();
-        updateQuantityRequestDto.setQuantity(2);
+        updateQuantityRequestDto = getDefaultCartItemUpdateQuantityRequestDto();
     }
 
     @Test
@@ -141,5 +134,25 @@ class ShoppingCartControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent())
                 .andReturn();
+    }
+
+    private static CartItemUpdateQuantityRequestDto getDefaultCartItemUpdateQuantityRequestDto() {
+        return new CartItemUpdateQuantityRequestDto()
+                .setQuantity(2);
+    }
+
+    private static CartItemResponseDto getDefaultCartItemResponseDto() {
+        return new CartItemResponseDto()
+                .setId(id)
+                .setQuantity(1)
+                .setBookId(id)
+                .setBookTitle("Title 1");
+    }
+
+    private static CartItemRequestDto getDefaultCartItemRequestDto() {
+        return new CartItemRequestDto()
+                .setQuantity(1)
+                .setBookId(id);
+
     }
 }
