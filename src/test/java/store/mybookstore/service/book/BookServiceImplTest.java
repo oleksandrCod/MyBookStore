@@ -58,37 +58,13 @@ class BookServiceImplTest {
 
     @BeforeAll
     static void beforeAll() {
-        category = new Category();
-        category.setId(id);
-        category.setName("test_category");
+        category = getDefaultCategory();
 
-        book = new Book();
-        book.setId(id);
-        book.setAuthor("Author A");
-        book.setTitle("Title A");
-        book.setDescription("Description A");
-        book.setPrice(BigDecimal.valueOf(10));
-        book.setIsbn("10001000");
-        book.setCoverImage("https://example.com/default-cover-image.jpg");
-        book.setCategories(Set.of(category));
+        book = getDefaultBook(category);
 
-        createBookRequestDto = new CreateBookRequestDto();
-        createBookRequestDto.setAuthor(book.getAuthor());
-        createBookRequestDto.setIsbn(book.getIsbn());
-        createBookRequestDto.setPrice(book.getPrice());
-        createBookRequestDto.setTitle(book.getTitle());
-        createBookRequestDto.setCoverImage(book.getCoverImage());
-        createBookRequestDto.setCategoryId(Set.of(id));
+        createBookRequestDto = getCreateBookRequestDto(book);
 
-        bookDto = new BookDto();
-        bookDto.setId(id);
-        bookDto.setAuthor(book.getAuthor());
-        bookDto.setTitle(book.getTitle());
-        bookDto.setDescription(book.getDescription());
-        bookDto.setPrice(book.getPrice());
-        bookDto.setIsbn(book.getIsbn());
-        bookDto.setCoverImage(book.getCoverImage());
-        bookDto.setCategoryId(Set.of(id));
+        bookDto = getDefaultBookDto(book);
     }
 
     @Test
@@ -190,5 +166,45 @@ class BookServiceImplTest {
         assertNotNull(actual);
         EqualsBuilder.reflectionEquals(actual.get(0), bookDto);
 
+    }
+
+    private static Category getDefaultCategory() {
+        return new Category()
+                .setId(id)
+                .setName("test_category");
+    }
+
+    private static Book getDefaultBook(Category category) {
+        return new Book()
+                .setId(id)
+                .setAuthor("Author A")
+                .setTitle("Title A")
+                .setDescription("Description A")
+                .setPrice(BigDecimal.valueOf(10.9))
+                .setIsbn("10001000")
+                .setCoverImage("https://example.com/default-cover-image.jpg")
+                .setCategories(Set.of(category));
+    }
+
+    private static CreateBookRequestDto getCreateBookRequestDto(Book book) {
+        return new CreateBookRequestDto()
+                .setAuthor(book.getAuthor())
+                .setIsbn(book.getIsbn())
+                .setPrice(book.getPrice())
+                .setTitle(book.getTitle())
+                .setCoverImage(book.getCoverImage())
+                .setCategoryId(Set.of(id));
+    }
+
+    private static BookDto getDefaultBookDto(Book book) {
+        return new BookDto()
+                .setId(id)
+                .setAuthor(book.getAuthor())
+                .setTitle(book.getTitle())
+                .setDescription(book.getDescription())
+                .setPrice(book.getPrice())
+                .setIsbn(book.getIsbn())
+                .setCoverImage(book.getCoverImage())
+                .setCategoryId(Set.of(id));
     }
 }

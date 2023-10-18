@@ -40,25 +40,16 @@ class CategoryControllerTest {
 
     @BeforeAll
     static void beforeAll(@Autowired WebApplicationContext applicationContext) {
-        category = new Category();
-        category.setId(id);
-        category.setName("test_category");
-        category.setDescription("simple");
+        category = getDefaultCategory();
 
-        requestDto = new CategoryCreateRequestDto();
-        requestDto.setName(category.getName());
-        requestDto.setDescription("simple");
+        requestDto = getDefaultCategoryCreateRequestDto(category);
 
-        categoryDto = new CategoryDto();
-        categoryDto.setId(id);
-        categoryDto.setName("test_category");
-        categoryDto.setDescription("simple");
+        categoryDto = getDefaultCategoryDto();
 
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(applicationContext)
                 .apply(SecurityMockMvcConfigurers.springSecurity())
                 .build();
-
     }
 
     @Test
@@ -180,5 +171,25 @@ class CategoryControllerTest {
         assertNotNull(actual);
         assertEquals(2, actual.length);
         assertEquals("Author A", actual[0].getAuthor());
+    }
+
+    private static Category getDefaultCategory() {
+        return new Category()
+                .setId(id)
+                .setName("test_category")
+                .setDescription("simple");
+    }
+
+    private static CategoryCreateRequestDto getDefaultCategoryCreateRequestDto(Category category) {
+        return new CategoryCreateRequestDto()
+                .setName(category.getName())
+                .setDescription("simple");
+    }
+
+    private static CategoryDto getDefaultCategoryDto() {
+        return new CategoryDto()
+                .setId(id)
+                .setName("test_category")
+                .setDescription("simple");
     }
 }
