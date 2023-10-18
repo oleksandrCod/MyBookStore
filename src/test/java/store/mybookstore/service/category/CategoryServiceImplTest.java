@@ -135,6 +135,7 @@ class CategoryServiceImplTest {
     }
 
     @Test
+    @DisplayName("Verify exception throwing with invalid id.")
     void getById_InvalidId_ThrowEntityNotFoundException() {
         Long invalidId = -1L;
         String expectedMessage = "Can't find category with input id:" + invalidId;
