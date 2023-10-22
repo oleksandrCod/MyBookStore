@@ -19,7 +19,7 @@ import store.mybookstore.dto.order.OrderUpdateStatusRequestDto;
 import store.mybookstore.dto.orderitem.OrderItemResponseDto;
 import store.mybookstore.service.order.OrderService;
 
-@Tag(name = "Order management", description = "Allows the user to manage endpoints of order.")
+@Tag(name = "Order management.", description = "Endpoints for interaction with Order entity.")
 @RestController
 @RequestMapping("/orders")
 @RequiredArgsConstructor
@@ -34,7 +34,7 @@ public class OrderController {
     }
 
     @GetMapping
-    @Operation(summary = "Get order history",
+    @Operation(summary = "Get order history.",
             description = "Allows the user to get full order history.")
     public List<OrderResponseDto> getOrderHistory(Pageable pageable) {
         return orderService.getOrdersHistory(pageable);
@@ -42,15 +42,15 @@ public class OrderController {
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole(ROLE_ADMIN)")
-    @Operation(summary = "Update order status",
-            description = "Allows the user with role admin to update order status")
+    @Operation(summary = "Update order status.",
+            description = "Allows the user with role admin to update order status.")
     public OrderResponseDto updateOrderStatus(@PathVariable Long id,
                                               OrderUpdateStatusRequestDto requestDto) {
         return orderService.update(id, requestDto);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get specific order item",
+    @Operation(summary = "Get specific order item.",
             description = "Allows the user to get a specific order item.")
     public OrderItemResponseDto getOrderItem(@PathVariable Long id) {
         return orderService.getOrderItemById(id);

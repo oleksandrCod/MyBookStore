@@ -22,7 +22,7 @@ import store.mybookstore.dto.book.CreateBookRequestDto;
 import store.mybookstore.dto.book.records.BookSearchParameters;
 import store.mybookstore.service.book.BookService;
 
-@Tag(name = "Books management", description = "Endpoints for managing books")
+@Tag(name = "Books management.", description = "Endpoints for interaction with Book entity.")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/books")
@@ -30,13 +30,13 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    @Operation(summary = "Get all books.", description = "Return list of all present books")
+    @Operation(summary = "Get all books.", description = "Return list of all present books.")
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.getAll(pageable);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get book by ID", description = "Return present book by ID")
+    @Operation(summary = "Get book by ID.", description = "Return present book by ID.")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
@@ -44,7 +44,7 @@ public class BookController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Create new book", description = "Create new book")
+    @Operation(summary = "Create new book.", description = "Create new book.")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
     }
@@ -52,22 +52,22 @@ public class BookController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete book by ID", description = "Soft delete for book with input ID")
+    @Operation(summary = "Delete book by ID.", description = "Soft delete for book with input ID.")
     public void deleteBookById(@PathVariable Long id) {
         bookService.deleteById(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
-    @Operation(summary = "Update book", description = "Update present book by ID")
+    @Operation(summary = "Update book.", description = "Update present book by ID.")
     public BookDto updateBookById(@PathVariable Long id,
                                   @RequestBody CreateBookRequestDto requestDto) {
         return bookService.updateById(id, requestDto);
     }
 
     @GetMapping("/search")
-    @Operation(summary = "Search books", description = "Return list of books"
-            + " with special input parameters")
+    @Operation(summary = "Search books.", description = "Return list of books"
+            + " with special input parameters.")
     public List<BookDto> search(BookSearchParameters bookSearchParameters) {
         return bookService.search(bookSearchParameters);
     }
