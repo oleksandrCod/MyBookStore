@@ -80,7 +80,7 @@ requests. ([Link for Postman](http://localhost:8088/api/auth/register), [Link fo
    ![img_3.png](img_3.png)
 
 # 2. **After, logging in, you will receive a bearer token.**
-  ![img_5.png](img_5.png)
+  ![img_9.png](img_9.png)
 
 # 3. **Copy value from response. Push button:**
    ![img_8.png](img_8.png)
@@ -90,6 +90,3 @@ requests. ([Link for Postman](http://localhost:8088/api/auth/register), [Link fo
 
    **For admin access, use or change the admin email in `application.properties` file. All conditions for sending a
    request are the same as for the user.**
-
-
-
