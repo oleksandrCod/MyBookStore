@@ -50,7 +50,8 @@ My application is typical solution of simple marketplace.
 ## Data Models
 
 Here are some of the key data models used in the Book-store API:
-![books.png](..%2F..%2FDesktop%2Fbooks.png)
+![books](https://github.com/oleksandrCod/MyBookStore/assets/119077378/41300641-f236-488f-abe3-5d19884b4b88)
+
 
 ## Technologies
 
