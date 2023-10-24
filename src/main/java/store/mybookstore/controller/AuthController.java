@@ -26,14 +26,14 @@ public class AuthController {
 
     @PostMapping("/login")
     @Operation(summary = "Login endpoint",
-            description = "Allows the user to log into the account")
+            description = "Allows the user to log into the account.")
     public UserLoginResponseDto login(@RequestBody UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);
     }
 
     @PostMapping("/register")
     @Operation(summary = "Register endpoint",
-            description = "Allows the user to register new account")
+            description = "Allows the user to register new account.")
     public UserRegistrationResponseDto register(
             @RequestBody @Valid UserRegistrationRequestDto requestDto)
             throws RegistrationException {
