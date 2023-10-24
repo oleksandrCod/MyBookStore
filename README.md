@@ -5,6 +5,13 @@ The project follows REST principles implemented with HTTP methods and include al
 such as **CREATE**, **READ**, **UPDATE** and **DELETE**.
 There are also implemented authentication with JWT bearer token.
 And authorization is realized with RBAC (Role Based Access Control).
+This application allows you to look for different books in the store. You can get specific book and look information
+about.
+Also, you have a shopping cart where you can collect books would you like to buy. You can add books with different
+quantity
+remove it from shopping cart and change quantity. After you can create order with your items from shopping cart.
+As an admin, you can create, delete and update books same with categories. Also, you may change order status.
+My application is typical solution of simple marketplace.
 
 **Summary**
 ![img.png](img.png)
@@ -15,6 +22,7 @@ And authorization is realized with RBAC (Role Based Access Control).
 - POST /api/auth/login Login endpoint
 
 **Available for USER**
+
 - GET /api/books (Get all books.)
 - GET /api/books/{id} (Get book by ID.)
 - GET /api/books/search (Search books.)
@@ -30,6 +38,7 @@ And authorization is realized with RBAC (Role Based Access Control).
 - POST /api/orders (Open new order.)
 
 **Available for ADMIN**
+
 - PUT /api/books/{id} (Update book by ID.)
 - POST /api/books (Create new book.)
 - DELETE /api/books/{id} (Delete book by ID.)
@@ -38,16 +47,24 @@ And authorization is realized with RBAC (Role Based Access Control).
 - POST /api/categories (Create new category.)
 - DELETE /api/categories/{id} (Delete category by ID.)
 
+## Data Models
+
+Here are some of the key data models used in the Book-store API:
+![books.png](..%2F..%2FDesktop%2Fbooks.png)
+
 ## Technologies
 
 * Java 17
-* Spring Boot, Spring Security, Spring Data JPA, Spring Web
+* Spring Boot, Spring Security, Spring Data JPA, Spring Web, Spring Tests
 * Docker
 * MySQL
 * Liquibase
 * Swagger
+* Hibernate
+* JWT (JSON Web Tokens)
 
 ## Installation and Launch
+
 1. Launch docker engine on your system.
 2. Fork this repository.
 3. Clone your forked repository.
@@ -56,9 +73,16 @@ And authorization is realized with RBAC (Role Based Access Control).
 6. Run command `docker-compose build` for build docker container.
 7. Run command `docker-compose up` for start project.
 
-Use Postman or Swagger for sending requests. ([Link for Postman](http://localhost:8088/api/auth/register), [Link for Swagger](http://localhost:8088/api/swagger-ui/index.html))  
-for user access -> just register then login  
-for admin access -> use or change the admin email in `application.properties` file
+Use Postman or Swagger for sending
+requests. ([Link for Postman](http://localhost:8088/api/auth/register), [Link for Swagger](http://localhost:8088/api/swagger-ui/index.html))
+
+1. **For user access, please register a new account first.**
+   ![img_3.png](img_3.png)
+2. **After, logging in, you will receive a bearer token. Use it in every request you make.**
+   ![img_5.png](img_5.png)
+3. 
+   For admin access, use or change the admin email in `application.properties` file. All conditions for sending a
+   request are the same as for the user.
 
 
 
