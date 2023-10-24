@@ -76,13 +76,20 @@ Here are some of the key data models used in the Book-store API:
 Use Postman or Swagger for sending
 requests. ([Link for Postman](http://localhost:8088/api/auth/register), [Link for Swagger](http://localhost:8088/api/swagger-ui/index.html))
 
-1. **For user access, please register a new account first.**
+# 1. **For user access, please register a new account first.**
    ![img_3.png](img_3.png)
-2. **After, logging in, you will receive a bearer token. Use it in every request you make.**
-   ![img_5.png](img_5.png)
-3. 
-   For admin access, use or change the admin email in `application.properties` file. All conditions for sending a
-   request are the same as for the user.
+
+# 2. **After, logging in, you will receive a bearer token.**
+  ![img_5.png](img_5.png)
+
+# 3. **Copy value from response. Push button:**
+   ![img_8.png](img_8.png)
+
+# 4. **Paste your token and click 'authorize'**
+   ![img_7.png](img_7.png)
+
+   **For admin access, use or change the admin email in `application.properties` file. All conditions for sending a
+   request are the same as for the user.**
 
 
 
